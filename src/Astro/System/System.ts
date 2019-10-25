@@ -23,7 +23,9 @@ export class System implements ISystem {
         });
 
         planets.forEach((b) => {
-            b.centralBody.setSatellite(Moon.randomMoon(names.getPlanetName()))
+            (new Array(rand(0, 4))).fill(0).forEach(() => {
+                b.centralBody.setSatellite(Moon.randomMoon(names.getPlanetName()))
+            });
         });
 
         mainCenter.setToOrbits(planets);

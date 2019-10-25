@@ -23,7 +23,6 @@ export abstract class BodyBase implements IBodyBase {
     }
 
     setSatellite(satellite: BodyBase) {
-        console.log('setSatellite', this, satellite);
         this.barycenter.orbits.push(new Barycenter(satellite, this.barycenter))
     }
 }

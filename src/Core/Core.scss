@@ -1,3 +1,65 @@
 .container {
   position: relative;
 }
+
+.browser {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  .browser {
+    background: #fff;
+  }
+}
+
+.wrapper {
+  text-align: center;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.decor {
+  border-radius: 100%;
+  margin: 10px auto;
+
+  &.star {
+    background: #ffa448;
+    width: 200px;
+    height: 200px;
+    ~ p {
+      font-size: 18px;
+    }
+  }
+
+  &.planet {
+    background: #796253;
+    width: 80px;
+    height: 80px;
+    ~ p {
+      font-size: 14px;
+    }
+  }
+
+  &.moon {
+    background: #ced1d0;
+    width: 30px;
+    height: 30px;
+    ~ p {
+      font-size: 12px;
+    }
+  }
+}
+

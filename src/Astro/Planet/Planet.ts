@@ -16,10 +16,10 @@ export class Planet extends BodyBase implements IPlanet {
 
     static randomPlanet(name: string) {
         return new Planet({
+            name,
             size: 0,
             mass: 0,
-            type: 'Jovian',
-            name: name
+            type: 'jovian'
         })
     }
 

@@ -16,10 +16,10 @@ export class Star extends BodyBase implements IStar {
 
     static randomStar(name: string) {
         return new Star({
+            name,
             size: 0,
             mass: 0,
-            type: 'G2V',
-            name: name
+            type: 'G2V'
         });
     }
 

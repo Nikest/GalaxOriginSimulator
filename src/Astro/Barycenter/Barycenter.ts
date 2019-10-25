@@ -3,13 +3,13 @@ import { BodyBase, Orbit, OrbitsArray } from 'Astro';
 export interface IBarycenter {
     selfOrbit: Orbit;
     centralBody: BodyBase | null,
-    orbits: OrbitsArray,
+    orbits: Barycenter[],
     outer: Barycenter | null;
 }
 
 export class Barycenter implements IBarycenter {
     centralBody: BodyBase = null;
-    orbits: OrbitsArray = [];
+    orbits: Barycenter[] = [];
     selfOrbit = new Orbit();
     outer = null;
 
@@ -17,10 +17,10 @@ export class Barycenter implements IBarycenter {
         this.centralBody = centralBody;
         this.centralBody.setBarycenter(this);
         this.outer = outer;
-        this.orbits = new OrbitsArray(orbits)
+        this.orbits = orbits
     }
 
     setToOrbits(orbits: Barycenter[]) {
-        this.orbits = new OrbitsArray(orbits)
+        this.orbits = orbits
     }
 }

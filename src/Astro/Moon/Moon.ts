@@ -15,10 +15,10 @@ export class Moon extends Planet implements IMoon {
 
     static randomMoon(name: string) {
         return new Moon({
+            name,
             size: 0,
             mass: 0,
-            type: 'selena',
-            name: name
+            type: 'selena'
         })
     }
 
