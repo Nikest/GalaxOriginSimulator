@@ -76,11 +76,11 @@ export class Core extends React.Component {
     };
 
     const { system } = this.state;
-    if (!system) return <button onClick={this.makeSystem}>make system</button>;
+    if (!system) return <button className={c('button')} onClick={this.makeSystem}>Создать новую систему</button>;
 
     return (
       <div className={c('container')} style={{background: `url(${bg})`}}>
-        <button onClick={this.makeSystem}>Создать систему</button>
+        <button className={c('button')} onClick={this.makeSystem}>Создать новую систему</button>
 
 
           <div className={c('horizontal')}>
