@@ -18,22 +18,22 @@ const mainSequenceRange = [
         count: [1, 76.45],
         type: 'M'
     }, {
-        count: [76.46, 88.55],
+        count: [76.45, 88.55],
         type: 'K'
     }, {
-        count: [88.56, 96.16],
+        count: [88.55, 96.16],
         type: 'G'
     }, {
-        count: [96.17, 99.17],
+        count: [96.16, 99.17],
         type: 'F'
     }, {
-        count: [99.18, 99.78],
+        count: [99.17, 99.78],
         type: 'A'
     }, {
-        count: [99.79, 99.97],
+        count: [99.78, 99.97],
         type: 'B'
     }, {
-        count: [99.98, 100],
+        count: [99.97, 100],
         type: 'O'
     }
 ];
@@ -87,7 +87,7 @@ const types = [
 self.onmessage = function ({data}) {
     const mainSequencePercent = rand(1, 10000);
     const type = mainSequenceRange.find(t => {
-        return mainSequencePercent > (t.count[0] * 100) && mainSequencePercent < (t.count[1] * 100)
+        return mainSequencePercent >= (t.count[0] * 100) && mainSequencePercent <= (t.count[1] * 100)
     });
 
     const typeProps = types.find(t => t.type === type.type);

@@ -80,7 +80,7 @@ export class Core extends React.Component {
 
     return (
       <div className={c('container')} style={{background: `url(${bg})`}}>
-        <button onClick={this.makeSystem}>make system</button>
+        <button onClick={this.makeSystem}>Создать систему</button>
 
 
           <div className={c('horizontal')}>
@@ -92,9 +92,9 @@ export class Core extends React.Component {
                           <div key={i} className={c('cell')}>
                               { makeCell(barycenter.centralBody) }
                               {
-                                  barycenter.orbits.length && (
+                                  !!barycenter.orbits.length && (
                                       <div className={c('vertical')}>
-                                        <p className={c('type-descr')}>Луны:</p>
+                                        <p className={c('type-descr')}>Луны: {barycenter.orbits.length}</p>
                                           { barycenter.orbits.map((bmoon, i) => {
                                               return <div key={i} className={c('cell')}>
                                                   { makeCell(bmoon.centralBody) }
