@@ -29,7 +29,7 @@ const ugly: any = [
     ['опб', 'об'],
     ['бп', 'б'],
     ['дп', 'д'],
-
+    ['еэ', 'эе']
 ];
 
 export const nameGenerator = function() {

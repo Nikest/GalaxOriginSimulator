@@ -1,7 +1,7 @@
 import { Barycenter } from 'Astro';
 
 export interface IBodyBase {
-    size: number;
+    radius: number;
     mass: number;
     type: string;
     name: string;
@@ -11,7 +11,7 @@ export interface IBodyBase {
 }
 
 export abstract class BodyBase implements IBodyBase {
-    size = 0;
+    radius = 0;
     mass = 0;
     type = '';
     name = '';

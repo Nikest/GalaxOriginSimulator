@@ -1,11 +1,12 @@
 import { Planet, IPlanet } from 'Astro';
+import {astroWorker} from "Astro/Services";
 
 export interface IMoon extends IPlanet {
 
 }
 
 interface IMoonProps {
-    size: number;
+    radius: number;
     mass: number;
     type: string;
     name: string;
@@ -13,19 +14,20 @@ interface IMoonProps {
 
 export class Moon extends Planet implements IMoon {
 
-    static randomMoon(name: string) {
-        return new Moon({
-            name,
-            size: 0,
-            mass: 0,
-            type: 'selena'
-        })
+    static makeRandomMoon(name: string, planetType: string) {
+        return new Promise(res => {
+            astroWorker.getPlanetRandomProps({name, planetType})
+                .then(({data}) => {
+                    const moon = new Moon({...data});
+                    res(moon)
+                });
+        });
     }
 
     constructor(props: IMoonProps) {
         super(props);
 
-        this.size = props.size;
+        this.radius = props.radius;
         this.mass = props.mass;
         this.type = props.type;
         this.name = props.name;
