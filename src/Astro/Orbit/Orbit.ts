@@ -5,6 +5,10 @@ export interface IOrbit {
     y: number;
     A: number;
     B: number;
+    v: number;
+    e: number;
+    F: number;
+    barycenter: Barycenter;
 }
 
 export class Orbit implements IOrbit {
@@ -12,9 +16,15 @@ export class Orbit implements IOrbit {
     y = 0;
     A = 0;
     B = 0;
+    v = 0;
+    e = 0;
+    F = 0;
+    barycenter: Barycenter;
 
-    constructor() {
-
+    constructor(radius: number, barycenter: Barycenter) {
+        this.A = radius;
+        this.B = radius;
+        this.barycenter = barycenter;
     }
 }
 

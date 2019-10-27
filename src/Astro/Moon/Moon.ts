@@ -10,12 +10,16 @@ interface IMoonProps {
     mass: number;
     type: string;
     name: string;
+    order: number;
 }
+
+const names = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
 
 export class Moon extends Planet implements IMoon {
 
-    static makeRandomMoon(name: string, planetType: string) {
+    static makeRandomMoon(systemName: string, planetType: string, order: number) {
         return new Promise(res => {
+            const name = `${systemName}-${order + 1}`;
             astroWorker.getPlanetRandomProps({name, planetType})
                 .then(({data}) => {
                     const moon = new Moon({...data});
@@ -31,6 +35,7 @@ export class Moon extends Planet implements IMoon {
         this.mass = props.mass;
         this.type = props.type;
         this.name = props.name;
+        this.order = props.order;
 
         this.class = 'moon';
         this.atmosphere = 0;

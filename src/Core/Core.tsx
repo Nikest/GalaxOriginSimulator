@@ -69,6 +69,7 @@ export class Core extends React.Component {
                 <p>Класс: <b>{this.typeTranslate(centralBody.type)}</b></p>
                 <p>Размер: {this.getSize(centralBody.radius, centralBody.class)}</p>
                 <p>Масса: {this.getMass(centralBody.mass, centralBody.class, centralBody.type)}</p>
+                <p>Радиус орбиты: {centralBody.barycenter.selfOrbit.A}</p>
               </div>
             </div>
           </div>

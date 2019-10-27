@@ -1,7 +1,8 @@
 const solar = {
     mass: 2 * 10e30,
     radius: 6.957 * 10e8,
-    luminosity: 3.828 * 10e26
+    luminosity: 3.828 * 10e26,
+    farOrbit: 50
 };
 
 function percent(number, percent) {
@@ -84,7 +85,7 @@ const types = [
     },
 ];
 
-self.onmessage = function ({data}) {
+self.onmessage = function () {
     const mainSequencePercent = rand(1, 10000);
     const type = mainSequenceRange.find(t => {
         return mainSequencePercent >= (t.count[0] * 100) && mainSequencePercent <= (t.count[1] * 100)
@@ -105,7 +106,14 @@ self.onmessage = function ({data}) {
         typeProps[key] = prop + begining;
     });
 
-    typeProps.name = data.name;
+    typeProps.name = `GOC-${rand(1000, 9999)}-${rand(100, 999).toString(32).toUpperCase()}`;
+
+    typeProps.habitableZone = [
+        Math.sqrt(typeProps.luminosity / percent(solar.luminosity, 110)),
+        Math.sqrt(typeProps.luminosity / percent(solar.luminosity, 53)),
+    ];
+
+    typeProps.farOrbit = (solar.farOrbit * (typeProps.mass / solar.mass));
 
     postMessage({...typeProps})
 };

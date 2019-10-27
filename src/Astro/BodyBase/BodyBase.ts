@@ -7,6 +7,7 @@ export interface IBodyBase {
     name: string;
     class: string;
     barycenter: Barycenter | null;
+    farOrbit: number;
     setBarycenter(barycenter: Barycenter)
 }
 
@@ -16,6 +17,7 @@ export abstract class BodyBase implements IBodyBase {
     type = '';
     name = '';
     class = '';
+    farOrbit = 0;
     barycenter: Barycenter = null;
 
     setBarycenter(barycenter: Barycenter) {

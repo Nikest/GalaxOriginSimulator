@@ -16,12 +16,12 @@ const systemSize = [
 
 
 export const astroWorker = {
-    getStarRandomProps(props) {
+    getStarRandomProps() {
         const worker = new StarWorker();
 
         return new Promise(res => {
             worker.onmessage = (data) => res(data);
-            worker.postMessage(props)
+            worker.postMessage(null)
         });
     },
     getPlanetRandomProps(props) {

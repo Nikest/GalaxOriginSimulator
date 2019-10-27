@@ -15,21 +15,28 @@ export class System implements ISystem {
         return new Promise(res => {
             const names = getNamesInStyle();
 
-            Star.makeRandomStar(names.getStarName()).then(star => {
+            Star.makeRandomStar().then((star: Star) => {
                 const mainCenter = new Barycenter(star, null);
 
-                const planetsPromices = astroWorker.getPlanetsTemplateCount(() => {
-                    return Planet.makeRandomPlanet(names.getPlanetName())
+                const planetsPromices = astroWorker.getPlanetsTemplateCount((p, i) => {
+                    return Planet.makeRandomPlanet(star.name, i)
                 });
 
                 Promise.all(planetsPromices).then((planetsArray: Planet[]) => {
-                    const planets = planetsArray.map((planet) => {
+                    const planets = planetsArray.map((planet, i) => {
                         return new Barycenter(planet, mainCenter)
                     });
 
+                    planets
+                        .map(() => {
+                            return rand(0, star.farOrbit)
+                        })
+                        .sort((a, b) => a - b)
+                        .forEach(((radius, i) => planets[i].setOrbitRadius(radius)));
+
                     const moonsPromices = planets.map((b: Barycenter) => {
-                        return Promise.all(astroWorker.getMoonsTemplateCount(b.centralBody.type, () => {
-                            return Moon.makeRandomMoon(names.getPlanetName(), b.centralBody.type)
+                        return Promise.all(astroWorker.getMoonsTemplateCount(b.centralBody.type, (m, i) => {
+                            return Moon.makeRandomMoon(b.centralBody.name, b.centralBody.type, i)
                         }))
                     });
 
@@ -44,7 +51,7 @@ export class System implements ISystem {
 
                         mainCenter.setToOrbits(planets);
                         const system = new System(mainCenter);
-
+                        console.log(system);
                         res(system);
                     });
                 });
@@ -53,26 +60,6 @@ export class System implements ISystem {
     }
 
     constructor(system: Barycenter) {
-
-        /*const mainStar = Star.randomStar(names.getStarName());
-        const mainCenter = new Barycenter(mainStar, null);
-
-        const planets = (new Array(rand(1, 8))).fill(0).map(() => {
-            return new Barycenter(
-                Planet.randomPlanet(names.getPlanetName()),
-                mainCenter
-            )
-        });
-
-        planets.forEach((b) => {
-            (new Array(rand(0, 4))).fill(0).forEach(() => {
-                b.centralBody.setSatellite(Moon.randomMoon(names.getPlanetName()))
-            });
-        });
-
-        mainCenter.setToOrbits(planets);
-        this.system = mainCenter*/
-
         this.system = system;
         this.name = system.centralBody.name;
     }
