@@ -37,10 +37,10 @@ export class Core extends React.Component {
 
   getSize = (radius: number, classType: string) => {
     if (classType === 'star') {
-      return radius / (6.957 * 10e8) + ' радиусов Солнца'
+      return (radius / 695510).toFixed(2) + ' радиусов Солнца'
     }
 
-    return radius / 6371000 + ' радиусов Земли'
+    return (radius / 6371).toFixed(2) + ' радиусов Земли'
   };
 
   getMass = (mass: number, classType: string, type: string) => {
@@ -53,6 +53,21 @@ export class Core extends React.Component {
     }
 
     return (mass / (5.9726 * 10e24)).toPrecision(2) + ' масс Земли'
+  };
+
+  getRadius = (radius: number) => {
+    if (radius > 1.496e6) {
+      return (radius / 1.496e8).toPrecision(2) + ' АЕ'
+    }
+    return radius.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' KM'
+  };
+
+  inHabitable =(barycenter) => {
+    if (barycenter.centralBody.class !== 'planet') return false;
+    const habitableZone = barycenter.outer.centralBody.habitableZone;
+    const radius = barycenter.selfOrbit.A / 1.496e8;
+
+    return (radius > habitableZone[0] && radius < habitableZone[1])
   };
 
   render(c?) {
@@ -69,7 +84,8 @@ export class Core extends React.Component {
                 <p>Класс: <b>{this.typeTranslate(centralBody.type)}</b></p>
                 <p>Размер: {this.getSize(centralBody.radius, centralBody.class)}</p>
                 <p>Масса: {this.getMass(centralBody.mass, centralBody.class, centralBody.type)}</p>
-                <p>Радиус орбиты: {centralBody.barycenter.selfOrbit.A}</p>
+                <p>Радиус орбиты: {this.getRadius(centralBody.barycenter.selfOrbit.A)}</p>
+                {this.inHabitable(centralBody.barycenter) ? <p className={c('habitable')}>В зоне обитаемости</p> : ''}
               </div>
             </div>
           </div>

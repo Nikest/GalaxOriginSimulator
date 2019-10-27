@@ -39,6 +39,7 @@ export class Star extends BodyBase implements IStar {
         this.name = props.name;
         this.luminosity = props.luminosity;
         this.farOrbit = props.farOrbit;
+        this.habitableZone = props.habitableZone;
 
         this.class = 'star';
     }

@@ -1,6 +1,6 @@
 const earth = {
     mass: 5.9726 * 10e24,
-    radius: 6371000
+    radius: 6371
 };
 
 function percent(number, percent) {

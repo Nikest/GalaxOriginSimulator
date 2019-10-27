@@ -1,6 +1,7 @@
 import * as StarWorker from './starType.worker.js';
 import * as PlanetWorker from './planetType.worker.js';
 import { rand } from 'Services';
+import { Barycenter } from "Astro";
 
 const systemSize = [
     [0, 30, 1],
@@ -69,5 +70,19 @@ export const astroWorker = {
             const count = precount ? rand(0, 4) : 0;
             return (new Array(count)).fill(0).map(mapFn)
         }
-    }
+    },
+    generateOrbitsRadius(barycenter: Barycenter) {
+        const randF = rand(60, 92);
+        const firstOrbitRadius = barycenter.centralBody.radius * (barycenter.centralBody.class === 'planet' ? randF / 10 : randF);
+
+        barycenter.orbits.forEach((o, i) => {
+            if (i === 0) {
+                o.setOrbitRadius(firstOrbitRadius);
+                return
+            }
+
+            const radius = barycenter.orbits[i - 1].selfOrbit.A * (rand(170, 198) / 100);
+            o.setOrbitRadius(radius)
+        })
+    },
 };

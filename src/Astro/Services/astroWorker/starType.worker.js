@@ -1,6 +1,6 @@
 const solar = {
     mass: 2 * 10e30,
-    radius: 6.957 * 10e8,
+    radius: 695510,
     luminosity: 3.828 * 10e26,
     farOrbit: 50
 };

@@ -27,13 +27,6 @@ export class System implements ISystem {
                         return new Barycenter(planet, mainCenter)
                     });
 
-                    planets
-                        .map(() => {
-                            return rand(0, star.farOrbit)
-                        })
-                        .sort((a, b) => a - b)
-                        .forEach(((radius, i) => planets[i].setOrbitRadius(radius)));
-
                     const moonsPromices = planets.map((b: Barycenter) => {
                         return Promise.all(astroWorker.getMoonsTemplateCount(b.centralBody.type, (m, i) => {
                             return Moon.makeRandomMoon(b.centralBody.name, b.centralBody.type, i)
@@ -46,10 +39,14 @@ export class System implements ISystem {
                                 moonArray.forEach((moon: Moon) => {
                                     planets[i].centralBody.setSatellite(moon)
                                 });
+
+                                astroWorker.generateOrbitsRadius(planets[i])
                             }
                         });
 
                         mainCenter.setToOrbits(planets);
+                        astroWorker.generateOrbitsRadius(mainCenter);
+
                         const system = new System(mainCenter);
                         console.log(system);
                         res(system);
