@@ -56,7 +56,7 @@ export class Planet extends BodyBase implements IPlanet {
         const habitable = this.barycenter.outer.centralBody['habitableZone'];
         const orbitRadius = this.barycenter.selfOrbit.A;
 
-        astroWorker.calculatePlanetSubType(habitable, this.type, orbitRadius)
+        astroWorker.recalculatePlanetType(habitable, this.type, orbitRadius)
             .then(({data}) => {
                 this.orbitZone = data.orbitZone;
                 this.type = data.type;

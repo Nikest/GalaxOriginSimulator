@@ -72,7 +72,7 @@ export const astroWorker = {
             return (new Array(count)).fill(0).map(mapFn)
         }
     },
-    calculatePlanetSubType(habitableZone, type, orbitRadius) {
+    recalculatePlanetType(habitableZone, type, orbitRadius) {
         const worker = new PlanetSubTypeWorker();
 
         const habitable = [habitableZone[0], habitableZone[1]];
