@@ -32,9 +32,6 @@ export const PlanetView = function({planet, children}:IPlanetViewProps) {
                 <span className={c('cell key')}>Атмосфера</span>
                 <span className={c('cell val')}>{planet.atmosphere}</span>
 
-                <span className={c('cell key')}>Колличество лун</span>
-                <span className={c('cell val')}>{planet.barycenter.orbits.length}</span>
-
                 <span className={c('cell key')}>Радиус орбиты</span>
                 <span className={c('cell val')}>{planetDescriptor.getOrbitRadius(planet.barycenter.selfOrbit.A)}</span>
 
