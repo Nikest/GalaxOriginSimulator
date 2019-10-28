@@ -69,12 +69,13 @@
   }
 
   .illustration {
-    width: 64px;
-    height: 64px;
+    width: 70px;
+    height: 70px;
   }
 
   .description {
     flex: 1 1 auto;
+    grid-template-columns: auto auto;
   }
 }
 
