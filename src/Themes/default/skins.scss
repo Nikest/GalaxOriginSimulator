@@ -12,8 +12,28 @@
   body {
     font-family: 'Roboto', sans-serif;
     background: #000;
-    &.theme-default {
+    color: var(--main-text-color);
 
+    &.theme-default {
+      --main-bg-color: #2d2d2d;
+      --main-bg-color-dark: #101010;
+
+      --decoration-bg-color: #ae7ce3;
+      --decoration-bg-color-dark: #785599;
+
+      --bg-button: #ae7ce3;
+      --bg-illustration: rgba(255, 255, 255, 0.05);
+      --bg-label-warning:  #99000057;
+
+      --bg-hot: rgba(255, 107, 1, 0.35);
+      --color-hot: rgb(255, 107, 1);
+
+      --color-comfort: rgb(80, 225, 0);
+
+      --color-cold: rgb(0, 159, 235);
+
+      --main-text-color: #fff;
+      --text-color-decor: #ae7ce3;
     }
   }
 

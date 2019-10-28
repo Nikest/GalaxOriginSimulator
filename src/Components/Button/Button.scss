@@ -1,0 +1,16 @@
+.container {
+  background: var(--bg-button);
+  height: 35px;
+  width: 140px;
+  color: var(--main-text-color);
+  font-weight: 300;
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+}
+
+.text {
+  position: relative;
+  z-index: 1;
+}
+

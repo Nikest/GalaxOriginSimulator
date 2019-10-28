@@ -1,5 +1,5 @@
 const earth = {
-    mass: 5.9726 * 10e24,
+    mass: 5.972e24,
     radius: 6371
 };
 
@@ -125,6 +125,7 @@ self.onmessage = function ({data}) {
     });
 
     typeProps.name = data.name;
+    typeProps.gravity = (typeProps.mass / earth.mass) / ( (typeProps.radius / earth.radius) * 2);
 
     postMessage({...typeProps})
 };

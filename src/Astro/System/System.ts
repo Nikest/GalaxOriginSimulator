@@ -48,11 +48,11 @@ export class System implements ISystem {
                             }
                         });
 
-                        astroWorker.generateOrbitsRadius(mainCenter);
+
                         mainCenter.setToOrbits(planets);
+                        astroWorker.generateOrbitsRadius(mainCenter);
 
                         system.setBarycenter(mainCenter);
-                        console.log(system);
                         res(system);
                     });
                 });
@@ -78,7 +78,7 @@ export class System implements ISystem {
         }, 250);
     }
 
-    init() { console.log('init');
+    init() {
         this.system.centralBody.init();
         this.system.orbits.forEach(b => {
             b.centralBody.init();

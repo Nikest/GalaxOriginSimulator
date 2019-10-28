@@ -6,6 +6,7 @@ export interface IPlanet extends IBodyBase {
     order: number;
     subType: string;
     orbitZone: 0 | 2 | 3;
+    gravity: number;
 }
 
 interface IPlanetProps {
@@ -14,6 +15,7 @@ interface IPlanetProps {
     type: string;
     name: string;
     order: number;
+    gravity: number;
 }
 
 const names = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
@@ -23,6 +25,7 @@ export class Planet extends BodyBase implements IPlanet {
     order = 0;
     subType: '';
     orbitZone: 0;
+    gravity; 0;
 
     static makeRandomPlanet(systemName: string, order: number) {
         return new Promise(res => {
@@ -43,6 +46,7 @@ export class Planet extends BodyBase implements IPlanet {
         this.type = props.type;
         this.name = props.name;
         this.order = props.order;
+        this.gravity = props.gravity;
 
         this.class = 'planet';
         this.atmosphere = 0;

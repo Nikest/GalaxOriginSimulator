@@ -15,7 +15,7 @@ const terraTypesNames = {
 };
 
 function getSubType(type, orbitZone) {
-    if(type === 'jovian' && type === 'neptunian') return type;
+    if(type === 'jovian' || type === 'neptunian') return type;
     if(orbitZone === 0 && type === 'selena') return type;
     if(orbitZone === 0 && type === 'subterra') return type;
 
@@ -31,8 +31,8 @@ self.onmessage = function ({data}) {
     };
 
     // habitable position
-    if (orbitRadius < habitable[0]) props.orbitZone = 0;
-    if (orbitRadius > habitable[1]) props.orbitZone = 2;
+    if (orbitRadius / 1.496e8 < habitable[0]) props.orbitZone = 0;
+    if (orbitRadius / 1.496e8 > habitable[1]) props.orbitZone = 2;
 
     props.type = getSubType(type, props.orbitZone);
 

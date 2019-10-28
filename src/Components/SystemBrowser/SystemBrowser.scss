@@ -1,0 +1,19 @@
+.container {
+  background-size: cover;
+  width: 100vw;
+  overflow: auto;
+}
+
+.browser {
+  margin: 25px;
+  display: grid;
+  grid-template-columns: 300px repeat(9, 250px);
+  grid-column-gap: 10px;
+}
+
+.collumn-wrapper {
+  margin-top: 10px;
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template-columns: 100%;
+}

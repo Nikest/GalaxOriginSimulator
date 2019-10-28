@@ -1,5 +1,5 @@
 import { Planet, IPlanet } from 'Astro';
-import {astroWorker} from "Astro/Services";
+import { astroWorker } from 'Astro/Services';
 
 export interface IMoon extends IPlanet {
 
@@ -11,6 +11,7 @@ interface IMoonProps {
     type: string;
     name: string;
     order: number;
+    gravity: number;
 }
 
 const names = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
@@ -36,6 +37,7 @@ export class Moon extends Planet implements IMoon {
         this.type = props.type;
         this.name = props.name;
         this.order = props.order;
+        this.gravity = props.gravity;
 
         this.class = 'moon';
         this.atmosphere = 0;
