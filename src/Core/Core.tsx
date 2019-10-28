@@ -81,11 +81,11 @@ export class Core extends React.Component {
               <p className={c('title')}>{centralBody.name}</p>
               <div className={c('description')}>
                 <p>{this.classTranslate(centralBody.class)}</p>
-                <p>Класс: <b>{this.typeTranslate(centralBody.type)}</b></p>
+                <p>Класс: <b>{this.typeTranslate(centralBody.type)} {centralBody.subType}</b></p>
                 <p>Размер: {this.getSize(centralBody.radius, centralBody.class)}</p>
                 <p>Масса: {this.getMass(centralBody.mass, centralBody.class, centralBody.type)}</p>
                 <p>Радиус орбиты: {this.getRadius(centralBody.barycenter.selfOrbit.A)}</p>
-                {this.inHabitable(centralBody.barycenter) ? <p className={c('habitable')}>В зоне обитаемости</p> : ''}
+                {centralBody.orbitZone === 1 ? <p className={c('habitable')}>В зоне обитаемости</p> : ''}
               </div>
             </div>
           </div>
@@ -131,7 +131,10 @@ export class Core extends React.Component {
   }
 
   makeSystem = () => {
-    System.makeRandomSystem().then(system => this.setState({system}));
+
+    System.makeRandomSystem().then(system => {
+      system.onUpdated(() => this.setState({system}))
+    });
   }
 }
 

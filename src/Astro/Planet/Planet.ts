@@ -4,6 +4,8 @@ import { astroWorker } from 'Astro/Services';
 export interface IPlanet extends IBodyBase {
     atmosphere: number;
     order: number;
+    subType: string;
+    orbitZone: 0 | 2 | 3;
 }
 
 interface IPlanetProps {
@@ -19,6 +21,8 @@ const names = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
 export class Planet extends BodyBase implements IPlanet {
     atmosphere = 0;
     order = 0;
+    subType: '';
+    orbitZone: 0;
 
     static makeRandomPlanet(systemName: string, order: number) {
         return new Promise(res => {
@@ -42,5 +46,22 @@ export class Planet extends BodyBase implements IPlanet {
 
         this.class = 'planet';
         this.atmosphere = 0;
+    }
+
+    init() {
+        this.calculateSelf()
+    }
+
+    calculateSelf() {
+        const habitable = this.barycenter.outer.centralBody['habitableZone'];
+        const orbitRadius = this.barycenter.selfOrbit.A;
+
+        astroWorker.calculatePlanetSubType(habitable, this.type, orbitRadius)
+            .then(({data}) => {
+                this.orbitZone = data.orbitZone;
+                this.type = data.type;
+
+                this.barycenter.updated(this);
+            });
     }
 }

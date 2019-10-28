@@ -40,4 +40,22 @@ export class Moon extends Planet implements IMoon {
         this.class = 'moon';
         this.atmosphere = 0;
     }
+
+    init() {
+        this.calculateSelf();
+    }
+
+    calculateSelf() {
+        const habitable = this.barycenter.outer.outer.centralBody['habitableZone'];
+        const orbitRadius = this.barycenter.outer.selfOrbit.A;
+
+
+        astroWorker.calculatePlanetSubType(habitable, this.type, orbitRadius)
+            .then(({data}) => {
+                this.orbitZone = data.orbitZone;
+                this.type = data.type;
+
+                this.barycenter.updated(this);
+            });
+    }
 }

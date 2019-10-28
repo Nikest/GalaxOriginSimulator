@@ -1,5 +1,6 @@
 import * as StarWorker from './starType.worker.js';
 import * as PlanetWorker from './planetType.worker.js';
+import * as PlanetSubTypeWorker from './planetSubType.worker.js';
 import { rand } from 'Services';
 import { Barycenter } from "Astro";
 
@@ -71,18 +72,22 @@ export const astroWorker = {
             return (new Array(count)).fill(0).map(mapFn)
         }
     },
+    calculatePlanetSubType(habitableZone, type, orbitRadius) {
+        const worker = new PlanetSubTypeWorker();
+
+        const habitable = [habitableZone[0], habitableZone[1]];
+        return new Promise((res) => {
+            worker.onmessage = (data) => res(data);
+            worker.postMessage({habitable, type, orbitRadius})
+        })
+    },
     generateOrbitsRadius(barycenter: Barycenter) {
         const randF = rand(60, 92);
         const firstOrbitRadius = barycenter.centralBody.radius * (barycenter.centralBody.class === 'planet' ? randF / 10 : randF);
 
         barycenter.orbits.forEach((o, i) => {
-            if (i === 0) {
-                o.setOrbitRadius(firstOrbitRadius);
-                return
-            }
-
-            const radius = barycenter.orbits[i - 1].selfOrbit.A * (rand(170, 198) / 100);
-            o.setOrbitRadius(radius)
+            const radius = (i === 0) ? firstOrbitRadius : (barycenter.orbits[i - 1].selfOrbit.A * (rand(170, 198) / 100));
+            o.setOrbitRadius(radius);
         })
     },
 };

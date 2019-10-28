@@ -27,4 +27,9 @@ export abstract class BodyBase implements IBodyBase {
     setSatellite(satellite: BodyBase) {
         this.barycenter.orbits.push(new Barycenter(satellite, this.barycenter))
     }
+
+    init() { this.calculateSelf() }
+    calculateSelf() {}
+
+    updated() { this.barycenter.updated(this) }
 }

@@ -1,10 +1,13 @@
-import { Star, Planet, Barycenter, Moon } from 'Astro';
+import {Star, Planet, Barycenter, Moon, BodyBase} from 'Astro';
 import { astroWorker } from 'Astro/Services';
 import { rand, getNamesInStyle } from 'Services';
 
 interface ISystem {
     name: string;
     system: Barycenter;
+    onUpdated(fn: Function);
+    updated(data: any);
+    setBarycenter(barycenter: Barycenter);
 }
 
 export class System implements ISystem {
@@ -13,10 +16,11 @@ export class System implements ISystem {
 
     static makeRandomSystem(): Promise<System> {
         return new Promise(res => {
-            const names = getNamesInStyle();
+            const system = new System();
 
             Star.makeRandomStar().then((star: Star) => {
                 const mainCenter = new Barycenter(star, null);
+                mainCenter.setSystemLink(system);
 
                 const planetsPromices = astroWorker.getPlanetsTemplateCount((p, i) => {
                     return Planet.makeRandomPlanet(star.name, i)
@@ -44,10 +48,10 @@ export class System implements ISystem {
                             }
                         });
 
-                        mainCenter.setToOrbits(planets);
                         astroWorker.generateOrbitsRadius(mainCenter);
+                        mainCenter.setToOrbits(planets);
 
-                        const system = new System(mainCenter);
+                        system.setBarycenter(mainCenter);
                         console.log(system);
                         res(system);
                     });
@@ -56,8 +60,38 @@ export class System implements ISystem {
         })
     }
 
-    constructor(system: Barycenter) {
-        this.system = system;
-        this.name = system.centralBody.name;
+    constructor() {
+
+    }
+
+    private onUpdatedListener: Function[] = [];
+    onUpdated(fn) {
+        this.onUpdatedListener.push(fn)
+    }
+
+    private updateTimer: any;
+    updated(body) {
+        clearTimeout(this.updateTimer);
+
+        this.updateTimer = setTimeout(() => {
+            this.onUpdatedListener.forEach(f => f(body))
+        }, 250);
+    }
+
+    init() { console.log('init');
+        this.system.centralBody.init();
+        this.system.orbits.forEach(b => {
+            b.centralBody.init();
+            b.orbits.forEach(b => {
+                b.centralBody.init();
+            })
+        })
+    }
+
+    setBarycenter(barycenter: Barycenter) {
+        this.system = barycenter;
+        this.name = barycenter.centralBody.name;
+
+        setTimeout(() => this.init(), 0)
     }
 }
