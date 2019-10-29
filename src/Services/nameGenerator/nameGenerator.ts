@@ -196,7 +196,15 @@ function addSuffix(root: string, suffixes: any[]) {
     return root;
 }
 
-export const getNamesInStyle = function (count: number = 100) {
+export interface INamesStyle {
+    getFemale(): string;
+    getMale(): string;
+    getFamily(): string;
+    getPlanetName(): string;
+    getStarName(): string;
+}
+
+export const getNamesInStyle = function (count: number = 100): INamesStyle {
     const maleEnding = ending();
     const femaleEnding = ending(true);
     const prefixes = (new Array(10)).fill(0).map(() => prefix());

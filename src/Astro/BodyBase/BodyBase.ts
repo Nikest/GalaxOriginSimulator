@@ -15,7 +15,14 @@ export abstract class BodyBase implements IBodyBase {
     radius = 0;
     mass = 0;
     type = '';
-    name = '';
+    private _NAME = '';
+    get name() {
+        return this._NAME
+    }
+    set name(val: string) {
+        this._NAME = val;
+        this.updated();
+    }
     class = '';
     farOrbit = 0;
     barycenter: Barycenter = null;
@@ -31,5 +38,5 @@ export abstract class BodyBase implements IBodyBase {
     init() { this.calculateSelf() }
     calculateSelf() {}
 
-    updated() { this.barycenter.updated(this) }
+    updated() { this.barycenter && this.barycenter.updated(this) }
 }

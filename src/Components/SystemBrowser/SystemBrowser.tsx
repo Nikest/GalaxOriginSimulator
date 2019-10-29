@@ -26,7 +26,7 @@ export class SystemBrowser extends React.Component<ISystemBrowserProps, ISystemB
         const { system, isLoading } = this.state;
         let content = <span/>;
 
-        if (system) { console.log(system);
+        if (system) {
             content = (
                 <div className={c('browser')}>
                     <StarView star={system.system.centralBody}/>

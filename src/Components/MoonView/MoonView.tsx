@@ -21,7 +21,7 @@ export const MoonView = function({moon}:IMoonViewProps) {
                         <span className={c('label')}>{planetDescriptor.getType(moon.type)}</span>
                     </span>
 
-                    <span className={c('cell key')}>Графитация g</span>
+                    <span className={c('cell key')}>Гравитация g</span>
                     <span className={c('cell val')}>{planetDescriptor.getGravity(moon.gravity)}</span>
 
                     <span className={c('double-cell')}>

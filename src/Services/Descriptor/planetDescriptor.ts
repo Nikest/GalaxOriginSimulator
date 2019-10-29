@@ -64,7 +64,6 @@ export const planetDescriptor = {
     getOrbitTime(orbit: Orbit) {
         const orbitLong = Math.PI * (((orbit.A + orbit.B) / 2) * 2);
         const seconds = orbitLong / orbit.v;
-        console.log(orbitLong, seconds, orbit.v);
         return timeComputing(seconds);
     }
 };

@@ -26,7 +26,7 @@ export const PlanetView = function({planet, children}:IPlanetViewProps) {
                 <span className={c('cell key')}>Радиус (в зем.)</span>
                 <span className={c('cell val')}>{planetDescriptor.getRadius(planet.radius)}</span>
 
-                <span className={c('cell key')}>Графитация g</span>
+                <span className={c('cell key')}>Гравитация g</span>
                 <span className={c('cell val')}>{planetDescriptor.getGravity(planet.gravity)}</span>
 
                 <span className={c('cell key')}>Атмосфера</span>
