@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { sl } from 'Services';
-
+import { modalService } from 'Modal';
 import { Galaxy } from 'Astro';
 import { Civilization } from 'Civilization';
 import { Button } from 'Components';
@@ -17,6 +17,10 @@ const generateSystem = () => {
 
 const createCivilization = () => {
     const civilization = new Civilization(Galaxy.getSystem());
+    civilization.addEventListeners('historyMessage', (msg) => {
+        console.log(msg);
+        modalService.open('Новое событие', <div>{msg}</div>);
+    });
     civilization.colonizeSystem();
 };
 

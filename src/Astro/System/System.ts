@@ -5,14 +5,17 @@ import { rand, getNamesInStyle } from 'Services';
 interface ISystem {
     name: string;
     system: Barycenter;
+    rate: number;
     onUpdated(fn: Function);
     updated(data: any);
     setBarycenter(barycenter: Barycenter);
+    forEach(fn: Function);
 }
 
 export class System implements ISystem {
     name = '';
     system: Barycenter;
+    rate: 0;
 
     static makeRandomSystem(): Promise<System> {
         return new Promise(res => {
@@ -93,5 +96,16 @@ export class System implements ISystem {
         this.name = barycenter.centralBody.name;
 
         setTimeout(() => this.init(), 0)
+    }
+
+    forEach(fn) {
+        fn(this.system.centralBody);
+        this.system.orbits.forEach((barycenter: Barycenter) => {
+            fn(barycenter.centralBody);
+
+            barycenter.orbits.forEach((barycenter: Barycenter) => {
+                fn(barycenter.centralBody);
+            })
+        })
     }
 }
