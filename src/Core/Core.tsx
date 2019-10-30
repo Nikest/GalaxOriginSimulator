@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { cd } from 'Services';
 import { Header, SystemBrowser, Footer } from 'Components';
+import { Modal } from 'Modal';
 
 @cd(() => require('./Core.scss'))
 export class Core extends React.Component {
@@ -16,6 +17,7 @@ export class Core extends React.Component {
             <div className={c('footer cell')}>
                 <Footer/>
             </div>
+            <Modal/>
         </article>
     )
   }
