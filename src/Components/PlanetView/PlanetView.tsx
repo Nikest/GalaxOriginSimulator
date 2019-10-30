@@ -35,6 +35,9 @@ export const PlanetView = function({planet, children}:IPlanetViewProps) {
                 <span className={c('cell key')}>Радиус орбиты</span>
                 <span className={c('cell val')}>{planetDescriptor.getOrbitRadius(planet.barycenter.selfOrbit.A)}</span>
 
+                <span className={c('cell key')}>Скорость</span>
+                <span className={c('cell val')}>{planet.barycenter.selfOrbit.v.toFixed(2)}</span>
+
                 <span className={c('cell key')}>Оборот по орбите <br/>(земное время)</span>
                 <span className={c('cell val')}>{planetDescriptor.getOrbitTime(planet.barycenter.selfOrbit)}</span>
 
