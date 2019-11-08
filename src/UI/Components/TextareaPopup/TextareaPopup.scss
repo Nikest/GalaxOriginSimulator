@@ -1,0 +1,17 @@
+.container {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr 35px;
+  grid-row-gap: 15px;
+  height: 100%;
+}
+
+.textarea {
+  grid-row: 1;
+  grid-column: 1;
+  background: var(--main-bg-color-dark);
+  color: #fff;
+  font-weight: 100;
+  width: 100%;
+  padding: 5px;
+}

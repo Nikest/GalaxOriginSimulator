@@ -18,10 +18,10 @@
       --main-bg-color: #2d2d2d;
       --main-bg-color-dark: #10101091;
 
-      --decoration-bg-color: #ae7ce3;
-      --decoration-bg-color-dark: #785599;
+      --decoration-bg-color: #204975;
+      --decoration-bg-color-dark: #204975;
 
-      --bg-button: #ae7ce3;
+      --bg-button: var(--decoration-bg-color);
       --bg-illustration: rgba(255, 255, 255, 0.05);
       --bg-label-warning:  #99000057;
 
@@ -33,7 +33,19 @@
       --color-cold: rgb(0, 159, 235);
 
       --main-text-color: #fff;
-      --text-color-decor: #ae7ce3;
+      --text-color-decor: #3d8dde;
+
+      --gradient-01: linear-gradient(270deg,
+              rgba(31,23,108,1) 0%,
+              rgba(29,28,122,1) 25%,
+              rgba(34,115,218,1) 40%,
+              rgba(27,189,225,1) 45%,
+              rgba(114,248,255,1) 50%,
+              rgba(27,189,225,1) 55%,
+              rgba(34,115,218,1) 60%,
+              rgba(29,28,122,1) 75%,
+              rgba(31,23,108,1) 100%
+      );
     }
   }
 

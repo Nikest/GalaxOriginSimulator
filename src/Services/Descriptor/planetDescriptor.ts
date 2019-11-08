@@ -1,4 +1,4 @@
-import { Orbit } from 'Astro';
+import { Orbit } from 'GameModules/Astro';
 
 const earth = {
     mass: 5.972e24,
