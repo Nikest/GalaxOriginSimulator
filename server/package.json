@@ -1,0 +1,53 @@
+{
+  "name": "NodeExpressTypescript",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "webpack --mode production && node ./build/server.bundle",
+    "run:dev": "NODE_ENV=development nodemon build/index.js"
+  },
+  "dependencies": {
+    "@types/socket.io": "^2.1.4",
+    "array-to-image": "^1.0.0",
+    "cookie-parser": "~1.4.3",
+    "express": "~4.16.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "fork-ts-checker-webpack-plugin": "^0.5.0",
+    "fs": "0.0.1-security",
+    "morgan": "~1.9.0",
+    "nodemon": "^1.19.2",
+    "pngjs3": "^5.1.6",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "sw-precache-webpack-plugin": "^0.11.5",
+    "uws": "^10.148.1",
+    "webpack-dev-middleware": "^3.4.0",
+    "webpack-manifest-plugin": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "10.3.4",
+    "autoprefixer": "8.6.3",
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.4",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-polyfill": "6.26.0",
+    "babel-runtime": "6.26.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
+    "fb-watchman": "2.0.0",
+    "npm-check": "^5.7.1",
+    "path": "0.12.7",
+    "ts-loader": "4.4.2",
+    "tslint": "5.10.0",
+    "tslint-config-airbnb": "5.9.2",
+    "typescript": "2.9.2",
+    "uglifyjs-webpack-plugin": "1.2.5",
+    "url-loader": "1.0.1",
+    "webpack": "4.12.0",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cleanup-plugin": "0.5.1",
+    "webpack-cli": "3.0.8",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "4.1.3"
+  }
+}
