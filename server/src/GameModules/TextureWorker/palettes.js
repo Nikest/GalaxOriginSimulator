@@ -1,4 +1,4 @@
-const sP = {
+const palettes = {
     sea: {
         R: 46,
         G: 70,
@@ -90,7 +90,7 @@ const sP = {
 };
 
 function surfacePalette(key) {
-    return sP[key]
+    return palettes[key]
 }
 
 module.exports = { surfacePalette };

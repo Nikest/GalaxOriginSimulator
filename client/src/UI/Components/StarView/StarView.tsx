@@ -11,7 +11,7 @@ interface IStarViewProps {
 
 export const StarView = function({star}: IStarViewProps) {
     const c = sl(() => require('./StarView.scss'));
-    const colorMap = star.texture.data ? star.texture.data.colorMap : [];
+    const colorMap = star.texture.data ? star.texture.data.colorMap : Uint8ClampedArray.from([]);
 
     return (
         <section className={c('container')}>

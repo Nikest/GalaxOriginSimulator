@@ -7,7 +7,7 @@ interface IIllustrationViewProps {
     size: number,
     astroBody: any,
     hash: string;
-    colorArray?: number[];
+    colorArray?: Uint8ClampedArray;
 }
 
 
@@ -34,8 +34,7 @@ export class IllustrationView extends React.Component<IIllustrationViewProps, II
     }
 
     makeImageData = () => {
-        const uint8ClampedArray = Uint8ClampedArray.from(this.props.colorArray);
-        const imageData = new ImageData(uint8ClampedArray, 300, 300);
+        const imageData = new ImageData(this.props.colorArray, 300, 300);
         const ctx: CanvasRenderingContext2D = this.canvas.current.getContext('2d');
 
         ctx.putImageData(imageData, 0, 0);

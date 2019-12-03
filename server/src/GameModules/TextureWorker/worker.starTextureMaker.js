@@ -42,7 +42,6 @@ function makeStarTexture(props, noise, push) {
     }
 }
 
-
 workerThreads.parentPort.on('message', (data) => {
     const f = (data.radius / 695510) * 1.5;
     console.log('palettes', palettes);
@@ -72,8 +71,8 @@ workerThreads.parentPort.on('message', (data) => {
         },
         arraysRGBA: {
             colorMap: [],
-            alphaChannel: null,
-            bumpMap: null,
+            alphaChannel: [],
+            bumpMap: [],
         }
     };
 

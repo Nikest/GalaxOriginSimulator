@@ -1,5 +1,5 @@
 {
-  "name": "NodeExpressTypescript",
+  "name": "galaxy-origin",
   "version": "1.0.0",
   "scripts": {
     "build": "webpack --mode production && node ./build/server.bundle",

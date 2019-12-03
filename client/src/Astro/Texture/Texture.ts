@@ -2,15 +2,15 @@ import { Planet, Star } from '../';
 import { requester } from 'Services';
 
 export interface IArraysRGBA {
-    colorMap: number[];
-    alphaChannel: number[];
-    bumpMap: number[];
+    colorMap: Uint8ClampedArray;
+    alphaChannel: Uint8ClampedArray;
+    bumpMap: Uint8ClampedArray;
 }
 
 export interface IArraysRGBAInterface {
-    colorMap: number[];
-    alphaChannel: number[];
-    bumpMap: number[];
+    colorMap: Uint8ClampedArray;
+    alphaChannel: Uint8ClampedArray;
+    bumpMap: Uint8ClampedArray;
 }
 
 export interface ITextureDataInterface {
@@ -58,7 +58,11 @@ export abstract class Texture implements ITexture {
 
     setData({ seed, arraysRGBA }: ITextureDataInterface): void {
         this.seed = seed.layers;
-        this.data = arraysRGBA;
+        this.data = {
+            colorMap: Uint8ClampedArray.from(arraysRGBA.colorMap),
+            alphaChannel: Uint8ClampedArray.from(arraysRGBA.alphaChannel),
+            bumpMap: Uint8ClampedArray.from(arraysRGBA.bumpMap)
+        };
         this.bodyBase.updated();
     }
 
