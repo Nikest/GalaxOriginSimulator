@@ -1,4 +1,4 @@
-const { percent } = require('../../Services/Math/math');
+const { percent } = require('../Services/Math/math');
 
 const solar = {
     mass: 1.989e30,

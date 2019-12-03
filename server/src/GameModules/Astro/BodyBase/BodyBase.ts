@@ -39,7 +39,10 @@ export abstract class BodyBase implements IBodyBase {
     }
 
     init() { this.calculateSelf() }
-    calculateSelf() {}
+
+    calculateSelf() {
+        this.barycenter.updated(this);
+    }
 
     updated() { this.barycenter && this.barycenter.updated(this) }
 }

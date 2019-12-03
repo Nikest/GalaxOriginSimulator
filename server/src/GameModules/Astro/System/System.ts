@@ -40,7 +40,7 @@ export class System implements ISystem {
                             barycenter.generateOrbits(moonPromices.length);
 
                             Promise.all(moonPromices).then((moonsArray: Moon[]) => {
-                                moonsArray.forEach((moon, i) => { console.log(moon);
+                                moonsArray.forEach((moon, i) => {
                                     barycenter.orbits[i].setCentralBody(moon);
                                 });
 

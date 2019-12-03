@@ -46,7 +46,7 @@ function getColdSubType(type) {
 }
 
 
-function init(data) { console.log('INIT');
+function init(data) {
     const { habitable, type, orbitRadius } = data;
     const props = {
         orbitZone: 1,
@@ -70,14 +70,12 @@ function init(data) { console.log('INIT');
 
         props.water = percent < 11 ? 10 : rand(10, percent);
         props.snowLine = percent;
-        console.log('zone 1', props)
     }
 
     if (props.orbitZone === 2) {
         props.type = getColdSubType(type, props.orbitZone);
 
         props.water = rand(0, 90);
-        console.log('zone 2', props)
     }
 
 

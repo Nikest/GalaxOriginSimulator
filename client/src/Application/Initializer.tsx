@@ -16,8 +16,5 @@ export class Initializer extends React.Component<{children: any}> {
     const theme = Config.get('THEMES');
     document.body.classList.add(`theme-${theme}`);
 
-    setInterval(() => {
-      requester.getGalaxyCoords(10, 15, 30)
-    }, 5000)
   }
 }

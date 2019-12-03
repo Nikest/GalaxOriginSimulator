@@ -1,22 +1,24 @@
 import * as React from 'react';
 import { sl, starDescriptor } from 'Services';
+import { Star } from 'Astro';
 import { Button, Preloader, IllustrationView } from 'UI';
 
 
 interface IStarViewProps {
-    star: any;
+    star: Star;
 }
 
 
-export const StarView = function({star}:IStarViewProps) {
+export const StarView = function({star}: IStarViewProps) {
     const c = sl(() => require('./StarView.scss'));
+    const colorMap = star.texture.data ? star.texture.data.colorMap : [];
 
     return (
         <section className={c('container')}>
             <div className={c('title')}>{ star.name }</div>
 
             <div className={c('illustration')}>
-                <IllustrationView size={300} astroBody={star} hash={star.hash}/>
+                <IllustrationView size={300} astroBody={star} colorArray={colorMap} hash={star.hash}/>
             </div>
 
             <div className={c('description')}>

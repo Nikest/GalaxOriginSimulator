@@ -6,6 +6,7 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
+    "base64-arraybuffer": "^0.2.0",
     "dotenv-safe": "^6.1.0",
     "fast-simplex-noise": "^3.2.1",
     "html-to-image": "^0.1.1",

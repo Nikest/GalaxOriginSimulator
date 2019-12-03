@@ -52,12 +52,8 @@ export class SystemBrowser extends React.Component<ISystemBrowserProps, ISystemB
     }
 
     @storeInjector(['viewSystem'])
-    onStoreUpdated({viewSystem}) {
-        this.setState({system: viewSystem, isLoading: false})
-    }
-
-    componentDidMount(): void {
-
+    onStoreUpdated({viewSystem}) { console.log(viewSystem);
+        this.setState({system: viewSystem.system, isLoading: false})
     }
 }
 

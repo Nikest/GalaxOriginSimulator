@@ -1,5 +1,5 @@
 export * from './nameGenerator';
 export * from './random';
-export * from  './astroWorker';
-export * from './hashGenerator';
+export * from '../Astro/Services/astroWorker';
+export * from '../Astro/Services/hashGenerator';
 export * from './Noise';

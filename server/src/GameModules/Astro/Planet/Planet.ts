@@ -1,5 +1,4 @@
-import { BodyBase, IBodyBase, Star } from 'GameModules/Astro';
-import { astroWorker, generateHash } from 'GameModules/Services';
+import { BodyBase, IBodyBase, Star, Astro } from 'GameModules/Astro';
 
 export interface IPlanet extends IBodyBase {
     atmosphere: number;
@@ -38,7 +37,7 @@ export class Planet extends BodyBase implements IPlanet {
 
     static makeRandomPlanet(star: Star, order: number, orbitRadius) {
         return new Promise(res => {
-            astroWorker.getPlanetRandomProps({
+            Astro.worker().getPlanetRandomProps({
                 orbitRadius,
                 order,
                 habitableZone: star.habitableZone,
@@ -65,7 +64,7 @@ export class Planet extends BodyBase implements IPlanet {
         this.percentInHabitable = props.percentInHabitable;
 
         this.class = 'planet';
-        this.hash = generateHash('planet');
+        this.hash = Astro.generateHash('planet');
         this.atmosphere = 0;
     }
 

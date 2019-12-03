@@ -1,5 +1,4 @@
-import { Planet, IPlanet, IPlanetProps } from 'GameModules/Astro';
-import { astroWorker, generateHash } from 'GameModules/Services';
+import { Planet, IPlanet, IPlanetProps, Astro } from 'GameModules/Astro';
 
 export interface IMoon extends IPlanet {
 
@@ -13,7 +12,7 @@ export class Moon extends Planet implements IMoon {
 
     static makeRandomMoon(orbitZone: number, planetType: string, percentInHabitable: number) {
         return new Promise(res => {
-            astroWorker.getPlanetRandomProps({
+            Astro.worker().getPlanetRandomProps({
                 orbitZone,
                 planetType,
                 percentInHabitable,
@@ -27,7 +26,7 @@ export class Moon extends Planet implements IMoon {
 
     constructor(props: IMoonProps) {
         super(props);
-        console.log(props);
+
         this.radius = props.radius;
         this.mass = props.mass;
         this.type = props.type;
@@ -41,7 +40,7 @@ export class Moon extends Planet implements IMoon {
         this.percentInHabitable = props.percentInHabitable;
 
         this.class = 'moon';
-        this.hash = generateHash('moon');
+        this.hash = Astro.generateHash('moon');
         this.atmosphere = 0;
     }
 

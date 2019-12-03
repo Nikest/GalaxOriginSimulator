@@ -6,3 +6,5 @@ export * from './EventEmitter';
 export * from './Store';
 export * from './TexturesGenerator';
 export * from './Requester';
+export * from './hashGenerator';
+export * from './random';

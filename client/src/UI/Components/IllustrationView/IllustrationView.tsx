@@ -7,6 +7,7 @@ interface IIllustrationViewProps {
     size: number,
     astroBody: any,
     hash: string;
+    colorArray?: number[];
 }
 
 
@@ -32,7 +33,17 @@ export class IllustrationView extends React.Component<IIllustrationViewProps, II
         )
     }
 
-    setImagedata = (imageData, ctx) => {
+    makeImageData = () => {
+        const uint8ClampedArray = Uint8ClampedArray.from(this.props.colorArray);
+        const imageData = new ImageData(uint8ClampedArray, 300, 300);
+        const ctx: CanvasRenderingContext2D = this.canvas.current.getContext('2d');
+
+        ctx.putImageData(imageData, 0, 0);
+
+        this.setState({ loaded: true });
+    };
+
+    /*setImagedata = (imageData, ctx) => {
         ctx.putImageData(imageData, 0, 0);
         this.setState({ loaded: true })
     };
@@ -49,17 +60,14 @@ export class IllustrationView extends React.Component<IIllustrationViewProps, II
         } else {
             TexturesGenerator.makePlanetTexturesData(astroBody).then(imageData => this.setImagedata(imageData, ctx));
         }
-    };
+    };*/
 
     componentDidUpdate(prevProps: Readonly<IIllustrationViewProps>, prevState: Readonly<IIllustrationViewState>, snapshot?: any): void {
-        const { hash } = this.props;
-        if (hash !== prevProps.hash) {
-            this.setState({loaded: false}, () => this.makeTexture())
+        if (!this.state.loaded) {
+            if( this.props.colorArray ) {
+                this.props.colorArray.length !== 0 ? this.makeImageData() : false;
+            }
         }
-    }
-
-    componentDidMount(): void {
-        this.makeTexture()
     }
 }
 

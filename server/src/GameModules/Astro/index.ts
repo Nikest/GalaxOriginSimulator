@@ -6,3 +6,5 @@ export * from './Moon';
 export * from './System';
 export * from './Barycenter';
 export * from './Orbit';
+export * from './Texture';
+export * from './Astro';

@@ -2,11 +2,12 @@ import { rand } from 'GameModules/Services';
 
 const { Worker } = require('worker_threads');
 
-const starMakerPath = '';
+const starMakerPath = './src/GameModules/Astro/Star/worker.starMaker.js';
+const planetMakerPath = './src/GameModules/Astro/Planet/worker.planetMaker.js';
 
 export const astroWorker = {
     getStarRandomProps(type?: string) {
-        const worker = new Worker('./src/GameModules/Astro/Star/worker.starMaker.js');
+        const worker = new Worker(starMakerPath);
 
         return new Promise(res => {
             worker.on('message', function (data) {
@@ -17,7 +18,7 @@ export const astroWorker = {
         });
     },
     getPlanetRandomProps(props): Promise<any> {
-        const worker = new Worker('./src/GameModules/Astro/Planet/worker.planetMaker.js');
+        const worker = new Worker(planetMakerPath);
 
         return new Promise(res => {
             worker.on('message', function (data) {

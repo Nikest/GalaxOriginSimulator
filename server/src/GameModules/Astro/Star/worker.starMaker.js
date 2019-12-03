@@ -1,7 +1,7 @@
 const workerThreads = require('worker_threads');
 
 const { solar, mainSequenceRange, types } = require('./values');
-const { percent, rand } = require('../../Services/Math/math');
+const { percent, rand } = require('../Services/Math/math');
 
 function makeRandomMainType() {
     const sRange = rand(0, 10000);

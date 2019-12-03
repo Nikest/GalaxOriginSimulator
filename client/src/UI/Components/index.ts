@@ -10,3 +10,4 @@ export * from './Preloader';
 export * from './EventText';
 export * from './TextareaPopup';
 export * from './IllustrationView';
+export * from './TestTexture';

@@ -30,7 +30,7 @@ export class Orbit implements IOrbit {
     }
 
     init() {
-        if (this.barycenter.centralBody.class === 'planet') {
+        if (this.barycenter.centralBody.class !== 'star') {
             const M = this.barycenter.outer.centralBody.mass / 10;
             const m = this.barycenter.centralBody.mass / 10;
             const Rmeters = this.A * 1000;

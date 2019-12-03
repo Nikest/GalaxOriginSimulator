@@ -1,7 +1,7 @@
 const workerThreads = require('worker_threads');
 
 const { types, mainSequenceRangeInStar, typesTemplates, earth, mainSequenceRangeInPlanet } = require('./values');
-const { percent, rand } = require('../../Services/Math/math');
+const { percent, rand } = require('../Services/Math/math');
 
 function makeRandomType(orbitZone) {
     const pRange = rand(0, 10000);

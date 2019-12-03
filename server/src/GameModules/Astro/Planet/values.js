@@ -1,4 +1,4 @@
-const { percent } = require('../../Services/Math/math');
+const { percent } = require('../Services/Math/math');
 
 const earth = {
     mass: 5.972e24,
